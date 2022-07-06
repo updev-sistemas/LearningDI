@@ -1,15 +1,18 @@
-﻿using DI.Injection;
+﻿using DI.Injection.Contracts;
+using DI.Injection.Extensions;
 using Microsoft.Extensions.DependencyInjection;
 
 var servicesCollection = new ServiceCollection();
+servicesCollection.AddSaveInDisk();
 servicesCollection.AddPrint();
 
 servicesCollection.AddTransient<Document>();
 
 var services = servicesCollection.BuildServiceProvider();
 
-var doc = (Document) CommonExtensions.CreateInstance(typeof(Document), services);
+var doc = (Document) DICommon.CreateInstance(typeof(Document), services);
 
+doc.Save(@"C:\Documents\arquivo.txt");
 doc.Print();
 
 _ = doc;
@@ -18,9 +21,15 @@ _ = servicesCollection;
 
 class Document
 {
-    private readonly IPrint? print;
-    
-    public Document(IPrint print) => this.print = print;
+    private readonly IPrint? _print;
+    private readonly IDiskManager? _disk;
 
-    public void Print() => this.print?.Impress();
+    public Document(IPrint print, IDiskManager disk)
+    {
+        _print = print;
+        _disk = disk;
+    }
+
+    public void Print() => _print?.Impress();
+    public void Save(string path) => _disk?.Save(path);
 }

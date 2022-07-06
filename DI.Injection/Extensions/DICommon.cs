@@ -1,14 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace DI.Injection
+namespace DI.Injection.Extensions
 {
-    public static class CommonExtensions
-    {
-        public static void AddPrint(this IServiceCollection services)   
-        {
-            services.AddScoped<IPrint, Print>();
-        }
-
+    public static class DICommon
+    { 
         public static object CreateInstance(Type type, IServiceProvider serviceProvider)
         {
             var ctor = type.GetConstructors()

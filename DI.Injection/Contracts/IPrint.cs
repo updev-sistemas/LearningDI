@@ -1,4 +1,4 @@
-﻿namespace DI.Injection
+﻿namespace DI.Injection.Contracts
 {
     public interface IPrint
     {

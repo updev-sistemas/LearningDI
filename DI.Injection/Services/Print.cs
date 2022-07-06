@@ -1,4 +1,6 @@
-﻿namespace DI.Injection
+﻿using DI.Injection.Contracts;
+
+namespace DI.Injection
 {
     public class Print : IPrint
     {
