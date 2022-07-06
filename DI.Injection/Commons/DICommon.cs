@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace DI.Injection.Extensions
+namespace DI.Injection.Commons
 {
     public static class DICommon
     { 

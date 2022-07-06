@@ -5,9 +5,7 @@ namespace DI.Injection.Extensions
 {
     public static class DiskManagerExtension
     {
-        public static void AddSaveInDisk(this IServiceCollection services)
-        {
-            services.AddScoped<IDiskManager, Disk>();
-        }
+        public static IServiceCollection AddSaveInDisk(this IServiceCollection services)
+            => services.AddScoped<IDiskManager, Disk>();
     }
 }
